@@ -1,5 +1,6 @@
 package com.moxi.dao;
 
+import com.moxi.pojo.PersonalInfomation;
 import com.moxi.pojo.Tester;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -41,4 +42,19 @@ public interface TesterMapper {
      */
     Tester selectTesterByAccountAndPassword(@Param("account") String account,
                                             @Param("password") String password);
+
+    /**
+     * 获取个人存储的信息
+     * @param personalInfomation
+     */
+    void saveTesterInfo(PersonalInfomation personalInfomation);
+
+    /**
+     * 查看是否存在信息录入
+     * @param series_number
+     * @param id_number
+     * @return
+     */
+    int getIfPersonalInfoExit(@Param("series_number") String series_number,
+                              @Param("id_number") String id_number);
 }

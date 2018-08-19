@@ -116,8 +116,20 @@ public class AdminController {
 	public String personalInfoSave(Model model, PersonalInfomation personalInfomation, HttpSession httpSession) {
 		System.out.println("come into personalInfo part");
 		//todo check status, 是否已经录入过信息
-
-		//todo 保存个人信息到表中
+		try {
+			int num = testerMapper.getIfPersonalInfoExit(personalInfomation.getSeriesNumber(), personalInfomation.getCardId());
+			if (num > 0) {
+				httpSession.setAttribute("error", "已经注册过信息");
+				model.addAttribute("error", "已经注册过信息");
+				return "apply";
+			}else {
+				testerMapper.saveTesterInfo(personalInfomation);
+			}
+		}catch (Exception e) {
+			System.out.println("error " + e.getMessage());
+			model.addAttribute("error", e);
+			return "redirect:dashboard";
+		}
 
 		// todo 如果成功，展示个人信息
 		return "redirect:dashboard";

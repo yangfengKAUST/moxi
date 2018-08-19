@@ -26,6 +26,23 @@
         and password = #{password}
     </select>
 
+    <insert id="saveTesterInfo">
+        insert into schema.test_information
+        (series_number, apply_number, name, sex, id_type, id_number, birth_date, nation, politics,
+        marriage, reward, education, education_level, major, school, commercement, major_level, note,
+        family_member, education_history, phone_number, telephone, photo)
+        VALUES
+        (#{seriesNumber}, #{applyNumber}, #{name}, #{gender}, #{cardFormat}, #{cardId}, #{birth}, #{nation}, #{politics},
+        #{marriage}, #{award}, #{education}, #{educationLevel}, #{major}, #{school}, #{afterSchool}, #{majorLevel}, #{note},
+        #{familyNumber}, #{passLife}, #{phoneNumber}, #{teleNumber}, #{photoNumber})
+    </insert>
+
+    <select id="getIfPersonalInfoExit" resultType="java.lang.Integer">
+        select count(*) from schema.test_information
+        where series_number = #{series_number}
+        and id_number = #{id_number}
+    </select>
+
     <resultMap type="com.moxi.pojo.Tester" id="testMap">
         <result property="seriesNumber" column="series_number"></result>
         <result property="name" column="name"></result>
