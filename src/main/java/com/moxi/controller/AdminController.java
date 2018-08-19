@@ -115,7 +115,7 @@ public class AdminController {
 	@PostMapping("admin/personalInfo")
 	public String personalInfoSave(Model model, PersonalInfomation personalInfomation, HttpSession httpSession) {
 		System.out.println("come into personalInfo part");
-		//todo check status, 是否已经录入过信息
+		// check status, 是否已经录入过信息
 		try {
 			int num = testerMapper.getIfPersonalInfoExit(personalInfomation.getSeriesNumber(), personalInfomation.getCardId());
 			if (num > 0) {
