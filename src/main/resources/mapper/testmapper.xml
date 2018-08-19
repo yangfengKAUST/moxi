@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moxi.dao.TesterMapper">
+    <insert id="insertTester">
+        INSERT INTO schema.user_apply
+        (series_number, id_number, password, name, phone_number, account)
+         VALUES
+         ( #{seriesNumber}, #{IDCard}, #{password}, #{name}, #{phoneNumber}, #{account})
+    </insert>
+
+    <select id="selectTesterExists"  resultType="java.lang.Integer">
+        select count(*) from schema.user_apply
+        where series_number = #{series_number}
+        and id_number = #{id_number}
+    </select>
+
+    <select id="selectAccountExists" resultType="java.lang.Integer">
+        SELECT count(*) from schema.user_apply
+        where account = #{account}
+    </select>
+
+    <select id="selectTesterByAccountAndPassword" resultType="com.moxi.pojo.Tester" resultMap = "testMap">
+        SELECT * from schema.user_apply
+        where account = #{account}
+        and password = #{password}
+    </select>
+
+    <resultMap type="com.moxi.pojo.Tester" id="testMap">
+        <result property="seriesNumber" column="series_number"></result>
+        <result property="name" column="name"></result>
+        <result property="IDCard" column="id_number"></result>
+        <result property="account" column="account"></result>
+        <result property="password" column="password"></result>
+        <result property="phoneNumber" column="phone_number"></result>
+    </resultMap>
+</mapper>

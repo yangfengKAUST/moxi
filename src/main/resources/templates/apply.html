@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>INSPINIA | Register</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+    <div>
+        <div>
+            <h2 class="logo-name">MX</h2>
+        </div>
+        <!--<h3>Register to MOXI</h3>-->
+        <h3>考试信息录入</h3>
+        <p>录入考试信息</p>
+        <form class="m-t" role="form" action="personalInfo" method="post">
+            <!--<form class="m-t" role="form" action="login.html">-->
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="招考序号" name = "seriesNumber" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="报名序号" name="applyNumber" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="姓名" name = "name" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="性别" name = "gender" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="证件类别" name="cardFormat" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="证件号码" name="cardId" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="出生日期" name = "birth" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="性别" name = "gender" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="民族" name="nation" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="政治面貌" name="politics" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="婚姻情况" name="marriage" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="奖励状况" name="award" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="学历" name="education" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="学位" name="educationLevel" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="专业" name="major" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="毕业院校" name="school" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="毕业时间" name="afterSchool" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="专业技术资格" name="majorLevel" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="备注" name="note" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="家庭成员" name="familyNumber" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="学习以及工作经历" name="passLife" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="移动电话" name="phoneNumber" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="固定电话" name="teleNumber" required=""/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="照片" name="photoNumber" required=""/>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary block full-width m-b">填写</button>
+
+            <!--<p class="text-muted text-center"><small>Already have an account?</small></p>-->
+            <!--<a class="btn btn-sm btn-white btn-block" th:href="login" href="login.html">登录</a>-->
+        </form>
+        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/js/jquery-2.1.1.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
+</body>
+
+</html>
