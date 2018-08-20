@@ -26,6 +26,7 @@
 		<java.version>1.8</java.version>
 		<java.common.version>2.4</java.common.version>
 		<java.mybatis.version>1.2.0</java.mybatis.version>
+		<java.poi.version>3.9</java.poi.version>
 	</properties>
 
 	<dependencies>
@@ -92,6 +93,13 @@
 			<artifactId>maven-clean-plugin</artifactId>
 			<version>2.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${java.poi.version}</version>
+		</dependency>
+
 
 
 	</dependencies>
