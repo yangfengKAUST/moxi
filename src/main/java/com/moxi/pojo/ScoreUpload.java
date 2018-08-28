@@ -10,72 +10,72 @@ public class ScoreUpload {
     /**
      * 招考序号
      */
-    private String seriesnumber;
+    private String series_number;
 
     /**
      * 准考证号
      */
-    private String testNumber;
+    private String apply_number;
 
     /**
      * 岗位代码
      */
-    private String positionCode;
+    private String position_code;
 
 
     /**
      * 成绩字段（科目，分数，比重）
      */
-    private String scoreJson;
+    private String scores;
 
     /**
      * 总成绩
      */
-    private double finalScore;
+    private double total_score;
 
     /**
      * 成绩排名
      */
     private int rank;
 
-    public String getSeriesnumber() {
-        return seriesnumber;
+    public String getSeries_number() {
+        return series_number;
     }
 
-    public void setSeriesnumber(String seriesnumber) {
-        this.seriesnumber = seriesnumber;
+    public void setSeries_number(String series_number) {
+        this.series_number = series_number;
     }
 
-    public String getTestNumber() {
-        return testNumber;
+    public String getApply_number() {
+        return apply_number;
     }
 
-    public void setTestNumber(String testNumber) {
-        this.testNumber = testNumber;
+    public void setApply_number(String apply_number) {
+        this.apply_number = apply_number;
     }
 
-    public String getPositionCode() {
-        return positionCode;
+    public String getPosition_code() {
+        return position_code;
     }
 
-    public void setPositionCode(String positionCode) {
-        this.positionCode = positionCode;
+    public void setPosition_code(String position_code) {
+        this.position_code = position_code;
     }
 
-    public String getScoreJson() {
-        return scoreJson;
+    public String getScores() {
+        return scores;
     }
 
-    public void setScoreJson(String scoreJson) {
-        this.scoreJson = scoreJson;
+    public void setScores(String scores) {
+        this.scores = scores;
     }
 
-    public double getFinalScore() {
-        return finalScore;
+    public double getTotal_score() {
+        return total_score;
     }
 
-    public void setFinalScore(double finalScore) {
-        this.finalScore = finalScore;
+    public void setTotal_score(double total_score) {
+        this.total_score = total_score;
     }
 
     public int getRank() {

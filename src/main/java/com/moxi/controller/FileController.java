@@ -1,5 +1,6 @@
 package com.moxi.controller;
 
+import com.moxi.dao.ScoreMapper;
 import com.moxi.service.IKnowledgeService;
 import com.moxi.util.ExcelImportUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class FileController {
     @Autowired
     IKnowledgeService knowledgeService;
 
+
     @GetMapping("console/test")
     public String test(Model model) {
         return "/files/upload";
     }
 
     @PostMapping("console/batchImport")
-    //@SessionAttribute(Constants.ACCOUNT_SESSION_KEY) Account account) throws IOException
     public String batchImportUserKnowledge (@RequestParam(value="filename") MultipartFile file,
                                             HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         if(file==null){
@@ -58,7 +59,8 @@ public class FileController {
         }
         String message = knowledgeService.batchImport(fileName,file);
         session.setAttribute("msg",message);
-        return "redirect:upload";
+        // todo which html should go to
+        return "login";
     }
 
 }

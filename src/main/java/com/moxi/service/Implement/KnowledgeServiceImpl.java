@@ -1,5 +1,6 @@
 package com.moxi.service.Implement;
 
+import com.moxi.dao.ScoreMapper;
 import com.moxi.pojo.ScoreUpload;
 import com.moxi.service.IKnowledgeService;
 import com.moxi.util.ExcelImportUtils;
@@ -9,6 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
@@ -29,10 +31,12 @@ import java.util.List;
 public class KnowledgeServiceImpl implements IKnowledgeService{
 
 
+    @Autowired
+    ScoreMapper scoreMapper;
+
     /**
      * 上传excel文件到临时目录后并开始解析
      * @param fileName
-     * @param userName
      * @return
      */
     @Override
@@ -61,8 +65,15 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                 wb = new HSSFWorkbook(is);
             }
             //根据excel里面的内容读取知识库信息
-            return readExcelValue(wb,tempFile);
+            List<ScoreUpload> dataInfo =  readExcelValue(wb,tempFile);
+
+            // 把数据保存到数据库
+            for (ScoreUpload scoreUpload : dataInfo) {
+                scoreMapper.insertScoreInfo(scoreUpload);
+            }
+            return "导入成功";
         }catch(Exception e){
+            // todo deal with except conditions
             e.printStackTrace();
         } finally{
             if(is !=null)
@@ -84,7 +95,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
      * @param wb
      * @return
      */
-    private String readExcelValue(Workbook wb,File tempFile){
+    private List<ScoreUpload> readExcelValue(Workbook wb,File tempFile){
 
         // 错误信息接收器
         String errorMsg = "";
@@ -126,19 +137,19 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                 if (null != cell) {
                     if (i == 0) {
                         seriesNumber = (cell.getStringCellValue());
-                        scoreUpload.setSeriesnumber(seriesNumber);
+                        scoreUpload.setSeries_number(seriesNumber);
                     }else if (i == 1) {
                         testNumber = cell.getStringCellValue();
-                        scoreUpload.setTestNumber(testNumber);
+                        scoreUpload.setApply_number(testNumber);
                     }else if (i == 2) {
                         positionCode = cell.getStringCellValue();
-                        scoreUpload.setPositionCode(positionCode);
+                        scoreUpload.setPosition_code(positionCode);
                     }else if (i == 3) {
                         scoreJson = cell.getStringCellValue();
-                        scoreUpload.setScoreJson(scoreJson);
+                        scoreUpload.setScores(scoreJson);
                     }else if (i == 4) {
                         finalScore = Double.valueOf(cell.getStringCellValue());
-                        scoreUpload.setFinalScore(finalScore);
+                        scoreUpload.setTotal_score(finalScore);
                     }else if (i == 5) {
                         rank = Integer.valueOf(cell.getStringCellValue());
                         scoreUpload.setRank(rank);
@@ -161,14 +172,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
             tempFile.delete();
         }
 
-        //全部验证通过才导入到数据库
-//        if(StringUtils.isEmpty(errorMsg)){
-//            for(UserKnowledgeBase userKnowledgeBase : userKnowledgeBaseList){
-//                this.saveUserKnowledge(userKnowledgeBase, userName);
-//            }
-//            errorMsg = "导入成功，共"+userKnowledgeBaseList.size()+"条数据！";
-//        }
-        return errorMsg;
+        return userKnowledgeBaseList;
     }
 
 }
