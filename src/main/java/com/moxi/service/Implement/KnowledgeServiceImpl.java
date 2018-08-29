@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
      * @return
      */
     @Override
-    public String batchImport(String fileName, MultipartFile mfile){
+    public String batchImport(String fileName, MultipartFile mfile, HttpServletRequest request){
 
         File uploadDir = new  File("/Users/yangfeng/Documents/moxi-master/files");
         //创建一个目录 （它的路径名由当前 File 对象指定，包括任一必须的父路径。）
