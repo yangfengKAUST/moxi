@@ -26,7 +26,6 @@ public class FileController {
     @Autowired
     IKnowledgeService knowledgeService;
 
-
     @GetMapping("console/test")
     public String test(Model model) {
         return "/files/uploadpic";
@@ -42,6 +41,7 @@ public class FileController {
         }
 
         // get file name
+
         String fileName=file.getOriginalFilename();
 
         if(!ExcelImportUtils.validateExcel(fileName)){
