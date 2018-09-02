@@ -42,6 +42,7 @@
         where series_number = #{series_number}
         and id_number = #{id_number}
     </select>
+    
 
     <resultMap type="com.moxi.pojo.Tester" id="testMap">
         <result property="seriesNumber" column="series_number"></result>
