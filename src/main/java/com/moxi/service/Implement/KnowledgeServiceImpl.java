@@ -106,7 +106,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
         ScoreUpload scoreUpload = scoreMapper.getScoreInformation(apply_number);
         if (scoreUpload == null) {
             System.out.println("score upload ");
-            return null;
+            return scoreUpload;
         }else {
             return scoreUpload;
         }

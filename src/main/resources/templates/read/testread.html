@@ -5,27 +5,32 @@
     <script>
 
         $(document).ready(function(){
-//            var seriesNumber=document.getElementById("seriesNumber").value;
             $("button").click(function(){
 
 
-//                var seriesNumber = "23457";
                 var seriesNumber=document.getElementById('series').value;
-//                console.log(seriesNumber);
+                if (seriesNumber == null) {
+                    alert("输入准考证 ");
+                    return;
+                }
 
-                console.log(document.getElementById('series').value);
 
-                //todo html数据展示有乱码
                 $.get(url = "../check.do" + "?seriesNumber=" + seriesNumber,function(data,status){
-
-                    console.log(data);
 
                     if (status == "success") {
                         console.log("success");
+                    }else {
+                        console.log("fails");
+                    }
+
+                    if (data == "it is empty" ) {
+                        alert("准考证输入错误 ");
+                        return;
                     }
                     var dataObject = JSON.parse(data);
 
-                    alert("数据：" + dataObject.series_number + "\n状态：" + status);
+                    //todo 跳转到下个html显示 或者是前段展示数据
+                    $("#t_body").append("<tr><td>"+ dataObject.series_number +"</td>"+"<td>"+dataObject.apply_number + "</td>"+"<td>"+dataObject.position_code +"</td></tr>");
 
                 });
             });
@@ -36,10 +41,27 @@
 </head>
 <body>
 <form >
-    <input class="form-input" type="text" name='series' id = 'series'/>
+    <input class="form-input" type="text" name='series' id = 'series' required=""/>
     <br/>
     <button >提交</button>
+
+
 </form>
+
+<table >
+    <thead>
+    <tr>
+        <td>时间</td>
+        <td>处理人</td>
+        <td>具体处理</td>
+    </tr>
+    </thead>
+
+    <tbody id="t_body"></tbody>
+
+</table>
+
+
 
 
 

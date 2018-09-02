@@ -28,6 +28,9 @@ public class TestController {
 
         ObjectMapper objectMapper = new ObjectMapper();
         ScoreUpload scoreUpload = iKnowledgeService.getScoreInfo(seriesNumber);
+        if(scoreUpload == null) {
+            return "it is empty";
+        }
         try {
             String scoreToJson = objectMapper.writeValueAsString(scoreUpload);
             return scoreToJson;
