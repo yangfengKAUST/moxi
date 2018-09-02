@@ -21,7 +21,7 @@ public class TestController {
     @Autowired
     IKnowledgeService iKnowledgeService;
 
-    @RequestMapping(value = "check", method = RequestMethod.GET)
+    @RequestMapping(value = "check.do", method = RequestMethod.GET)
     @ResponseBody
     @JsonRawValue
     public String testTheInterface(String seriesNumber) {
@@ -37,6 +37,8 @@ public class TestController {
         }
 
     }
+
+
 
 
 }

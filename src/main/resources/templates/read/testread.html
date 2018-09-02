@@ -10,12 +10,13 @@
 
 
 //                var seriesNumber = "23457";
-                var seriesNumber=document.getElementById('series');
+                var seriesNumber=document.getElementById('series').value;
 //                console.log(seriesNumber);
 
                 console.log(document.getElementById('series').value);
 
-                $.get(url = "../check?seriesNumber=" + seriesNumber,function(data,status){
+                //todo html数据展示有乱码
+                $.get(url = "../check.do" + "?seriesNumber=" + seriesNumber,function(data,status){
 
                     console.log(data);
 
