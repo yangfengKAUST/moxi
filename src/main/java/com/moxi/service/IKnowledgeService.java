@@ -1,5 +1,6 @@
 package com.moxi.service;
 
+import com.moxi.pojo.ScoreUpload;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,5 +19,13 @@ public interface IKnowledgeService {
      */
 
     String batchImport(String fileName, MultipartFile mfile, HttpServletRequest request);
+
+
+    /**
+     * 根据准考证号码查看分数和排名
+     * @param apply_number
+     * @return
+     */
+    ScoreUpload getScoreInfo(String apply_number);
 
 }

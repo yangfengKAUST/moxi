@@ -1,6 +1,7 @@
 package com.moxi.service.Implement;
 
 import com.moxi.dao.ScoreMapper;
+import com.moxi.pojo.ScoreParam;
 import com.moxi.pojo.ScoreUpload;
 import com.moxi.service.IKnowledgeService;
 import com.moxi.util.ExcelImportUtils;
@@ -70,7 +71,16 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
 
             // 把数据保存到数据库
             for (ScoreUpload scoreUpload : dataInfo) {
-                scoreMapper.insertScoreInfo(scoreUpload);
+                ScoreParam scoreParam = new ScoreParam();
+                scoreParam.setSeries_number(scoreUpload.getSeries_number());
+                scoreParam.setApply_number(scoreUpload.getApply_number());
+                scoreParam.setPosition_code(scoreUpload.getPosition_code());
+                if (scoreMapper.ifExist(scoreParam) == 0) {
+                    scoreMapper.insertScoreInfo(scoreUpload);
+                }else{
+                    // todo add log here
+                    System.out.println("this score is already exist");
+                }
             }
             return "导入成功";
         }catch(Exception e){
@@ -88,6 +98,18 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
             }
         }
         return "导入出错！请检查数据格式！";
+    }
+
+
+    @Override
+    public ScoreUpload getScoreInfo(String apply_number) {
+        ScoreUpload scoreUpload = scoreMapper.getScoreInformation(apply_number);
+        if (scoreUpload == null) {
+            System.out.println("score upload ");
+            return null;
+        }else {
+            return scoreUpload;
+        }
     }
 
 
@@ -153,7 +175,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                         scoreUpload.setTotal_score(finalScore);
                     }else if (i == 5) {
                         rank = Integer.valueOf(cell.getStringCellValue());
-                        scoreUpload.setRank(rank);
+                        scoreUpload.setRank_condition(rank);
                     }
                 }else {
                     System.out.println("传入的列为空");

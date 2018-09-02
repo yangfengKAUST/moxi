@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+//            var seriesNumber=document.getElementById("seriesNumber").value;
+            $("button").click(function(){
+
+
+                var seriesNumber = "23457";
+                $.get(url = "../check?seriesNumber=" + seriesNumber,function(data,status){
+
+
+                    if (data == null) {
+                        console.log(data);
+                        alert("准考证不存在");
+                        return false;
+                    }else {
+                        alert("准考证");
+                        console.log(data);
+                    }
+
+                    if (status != 200) {
+                        alert("error");
+                    }
+                    var dataObject = JSON.parse(data);
+
+                    alert("数据：" + dataObject.get("series_number") + "\n状态：" + status);
+                });
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<form >
+    <input class="form-input" type="text" name="seriesNumber" />
+    <br/>
+    <button >提交</button>
+</form>
+
+
+</body>
+</html>

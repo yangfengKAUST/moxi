@@ -7,6 +7,17 @@
         INSERT INTO schema.score
         (series_number, apply_number, position_code, scores, total_score, rank_condition)
         VALUES
-        (#{series_number}, #{apply_number}, #{position_code}, #{scores}, #{total_score}, #{rank})
+        (#{series_number}, #{apply_number}, #{position_code}, #{scores}, #{total_score}, #{rank_condition})
     </insert>
+
+    <select id="ifExist" parameterType="com.moxi.pojo.ScoreParam" resultType="java.lang.Integer">
+        select count(*) from schema.score where series_number = #{series_number}
+        and apply_number = #{apply_number}
+        and position_code = #{position_code}
+    </select>
+
+    <select id="getScoreInformation" resultType="com.moxi.pojo.ScoreUpload">
+        select * from schema.score
+        where apply_number = #{apply_number}
+    </select>
 </mapper>

@@ -1,6 +1,11 @@
 package com.moxi.recontroller;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.moxi.pojo.ScoreUpload;
+import com.moxi.service.IKnowledgeService;
+import com.moxi.util.ExcelImportUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,11 +18,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestController {
 
-    @RequestMapping(value = "/test.do", method = RequestMethod.GET)
+    @Autowired
+    IKnowledgeService iKnowledgeService;
+
+    @RequestMapping(value = "check", method = RequestMethod.GET)
     @ResponseBody
     @JsonRawValue
-    public String testTheInterface() {
-        return "success";
+    public String testTheInterface(String seriesNumber) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ScoreUpload scoreUpload = iKnowledgeService.getScoreInfo(seriesNumber);
+        try {
+            String scoreToJson = objectMapper.writeValueAsString(scoreUpload);
+            return scoreToJson;
+        }catch (Exception e) {
+            System.out.println("error" + e.getMessage());
+            return e.getMessage();
+        }
+
     }
 
 

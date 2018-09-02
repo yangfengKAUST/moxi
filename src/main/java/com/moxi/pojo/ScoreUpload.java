@@ -36,7 +36,7 @@ public class ScoreUpload {
     /**
      * 成绩排名
      */
-    private int rank;
+    private int rank_condition;
 
     public String getSeries_number() {
         return series_number;
@@ -78,11 +78,11 @@ public class ScoreUpload {
         this.total_score = total_score;
     }
 
-    public int getRank() {
-        return rank;
+    public int getRank_condition() {
+        return rank_condition;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
+    public void setRank_condition(int rank_condition) {
+        this.rank_condition = rank_condition;
     }
 }

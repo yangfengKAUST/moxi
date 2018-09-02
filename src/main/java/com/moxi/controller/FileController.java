@@ -28,7 +28,7 @@ public class FileController {
 
     @GetMapping("console/test")
     public String test(Model model) {
-        return "/files/uploadpic";
+        return "/read/testread";
     }
 
     @PostMapping("console/batchImport")
