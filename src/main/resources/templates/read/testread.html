@@ -9,25 +9,23 @@
             $("button").click(function(){
 
 
-                var seriesNumber = "23457";
+//                var seriesNumber = "23457";
+                var seriesNumber=document.getElementById('series');
+//                console.log(seriesNumber);
+
+                console.log(document.getElementById('series').value);
+
                 $.get(url = "../check?seriesNumber=" + seriesNumber,function(data,status){
 
+                    console.log(data);
 
-                    if (data == null) {
-                        console.log(data);
-                        alert("准考证不存在");
-                        return false;
-                    }else {
-                        alert("准考证");
-                        console.log(data);
-                    }
-
-                    if (status != 200) {
-                        alert("error");
+                    if (status == "success") {
+                        console.log("success");
                     }
                     var dataObject = JSON.parse(data);
 
-                    alert("数据：" + dataObject.get("series_number") + "\n状态：" + status);
+                    alert("数据：" + dataObject.series_number + "\n状态：" + status);
+
                 });
             });
         });
@@ -37,10 +35,11 @@
 </head>
 <body>
 <form >
-    <input class="form-input" type="text" name="seriesNumber" />
+    <input class="form-input" type="text" name='series' id = 'series'/>
     <br/>
     <button >提交</button>
 </form>
+
 
 
 </body>
