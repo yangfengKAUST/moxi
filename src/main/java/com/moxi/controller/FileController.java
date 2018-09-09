@@ -2,6 +2,8 @@ package com.moxi.controller;
 
 import com.moxi.service.IKnowledgeService;
 import com.moxi.util.ExcelImportUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ import java.io.File;
  */
 @Controller
 public class FileController {
+
+    Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     IKnowledgeService knowledgeService;
@@ -65,6 +69,7 @@ public class FileController {
     @PostMapping("console/picupload")
     public String uploadPicture(@RequestParam(value="pic") MultipartFile picture, HttpServletRequest request) {
         if (picture == null) {
+            logger.info("given picture is null " + picture.getName());
             System.out.println("it is null");
         }else {
             System.out.println("it is not null");
@@ -82,6 +87,8 @@ public class FileController {
             picture.transferTo(newPicture);
         }catch (Exception e) {
             System.out.println("error " + e.getMessage());
+            logger.error("error " + e.getMessage() + " " + picture.getName());
+            logger.error(e.getMessage(), e);
         }
         // todo need to rewrite
         return "/upload"+"/"+picName;

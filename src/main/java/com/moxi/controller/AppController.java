@@ -65,6 +65,7 @@ public class AppController {
 		try {
 			FileUtils.copyInputStreamToFile(imageFile.getInputStream(),new File(realPath, fileName));
 		} catch (IOException e) {
+			logger.error(e.getMessage(), e);
 			e.printStackTrace();
 		}
 		ResObject<Object> object = new ResObject<Object>(Constant.Code01, Constant.Msg01, user, null);
@@ -93,6 +94,8 @@ public class AppController {
 				try {
 					FileUtils.copyInputStreamToFile(file.getInputStream(),new File(realPath, fileName));
 				} catch (IOException e) {
+					logger.error(e.getMessage(),e);
+					logger.error("fail upload error " + e.getMessage() + " " + user.getUserName());
 					e.printStackTrace();
 				}
 			}
