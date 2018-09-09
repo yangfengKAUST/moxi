@@ -11,6 +11,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +34,7 @@ import java.util.List;
 @Service
 public class KnowledgeServiceImpl implements IKnowledgeService{
 
+    Logger logger = LoggerFactory.getLogger(KnowledgeServiceImpl.class);
 
     @Autowired
     ScoreMapper scoreMapper;
@@ -97,6 +100,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                 }
             }
         }
+        logger.error("导入出错！请检查数据格式！");
         return "导入出错！请检查数据格式！";
     }
 
@@ -178,6 +182,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                         scoreUpload.setRank_condition(rank);
                     }
                 }else {
+                    logger.error("传入的列为空 " + tempFile.getName());
                     System.out.println("传入的列为空");
                 }
             }
