@@ -47,11 +47,19 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
     @Override
     public String batchImport(String fileName, MultipartFile mfile, HttpServletRequest request){
 
-        File uploadDir = new  File("/Users/yangfeng/Documents/moxi-master/files");
+
+        String path = request.getSession().getServletContext().getRealPath("upload");
+
+        String name = mfile.getOriginalFilename();
+        File uploadDir =  new File(path + "/" + name);
+
+
+//        File uploadDir = new  File("/Users/yangfeng/Documents/moxi-master/files");
         //创建一个目录 （它的路径名由当前 File 对象指定，包括任一必须的父路径。）
         if (!uploadDir.exists()) uploadDir.mkdirs();
         //新建一个文件
-        File tempFile = new File("/Users/yangfeng/Documents/moxi-master/files/" + new Date().getTime() + ".xlsx");
+//        File tempFile = new File("/Users/yangfeng/Documents/moxi-master/files/" + new Date().getTime() + ".xlsx");
+        File tempFile = new File(path + "/" + name + "/" + new Date().getTime() + ".xlsx");
         //初始化输入流
         InputStream is = null;
         try{
@@ -96,7 +104,8 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                     is.close();
                 }catch(IOException e){
                     is = null;
-                    e.printStackTrace();
+                    logger.error(e.getMessage(), e);
+//                    e.printStackTrace();
                 }
             }
         }
