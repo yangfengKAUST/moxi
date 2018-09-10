@@ -42,15 +42,21 @@
             <!--</div>-->
 
             <div class="form-group">
-                <select name="gender" class="form-control" placeholder="性别" required="">
-                    <option value="0">性别</option>
+                <select name="gender" class="form-control" placeholder="-性别-" required="">
+                    <option>-性别-</option>
                     <option value="1">男</option>
                     <option value="2">女</option>
                 </select>
             </div>
 
+            <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="证件类别" name="cardFormat" required=""/>-->
+            <!--</div>-->
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="证件类别" name="cardFormat" required=""/>
+                <select name="cardFormat" class="form-control" placeholder="证件类别" required="">
+                    <option>-证件类别-</option>
+                    <option value="身份证">身份证</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="证件号码" name="cardId" required=""/>
@@ -58,18 +64,44 @@
             <div class="form-group">
                 <input type="datetime" class="form-control" placeholder="出生日期" name = "birth" required=""/>
             </div>
+
             <!--<div class="form-group">-->
-                <!--<input type="text" class="form-control" placeholder="性别" name = "gender" required=""/>-->
+                <!--<input type="text" class="form-control" placeholder="民族" name="nation" required=""/>-->
             <!--</div>-->
+
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="民族" name="nation" required=""/>
+                <select name="nation" class="form-control" placeholder="民族" required="">
+                    <option>-民族-</option>
+                    <option value="身份证">身份证</option>
+                </select>
             </div>
+
+            <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="政治面貌" name="politics" required=""/>-->
+            <!--</div>-->
+
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="政治面貌" name="politics" required=""/>
+                <select name="politics" class="form-control" placeholder="政治面貌" required="">
+                    <option>-政治面貌-</option>
+                    <option value="党员">党员</option>
+                    <option value="群众">群众</option>
+                </select>
             </div>
+
+            <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="婚姻情况" name="marriage" required=""/>-->
+            <!--</div>-->
+
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="婚姻情况" name="marriage" required=""/>
+                <select name="marriage" class="form-control" placeholder="婚姻情况" required="">
+                    <option>-婚姻情况-</option>
+                    <option value="已婚">已婚</option>
+                    <option value="未婚">未婚</option>
+                </select>
             </div>
+
+
+
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="奖励状况" name="award" required=""/>
             </div>
@@ -116,7 +148,7 @@
             <!--<p class="text-muted text-center"><small>Already have an account?</small></p>-->
             <!--<a class="btn btn-sm btn-white btn-block" th:href="login" href="login.html">登录</a>-->
         </form>
-        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        <!--<p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>-->
     </div>
 </div>
 
