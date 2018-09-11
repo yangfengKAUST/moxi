@@ -79,6 +79,7 @@ public class AdminController {
 		Tester tester = testerMapper.selectTesterByAccountAndPassword(userName, password);
 		if (tester != null) {
 			httpSession.setAttribute("admin", tester);
+			// todo 登录成功后的跳转
 			return "redirect:dashboard";
 		} else {
 			model.addAttribute("error", "用户名或密码错误，请重新登录！");
