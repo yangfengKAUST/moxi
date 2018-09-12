@@ -64,10 +64,28 @@ public class AdminController {
 		return "login";
 	}
 
+	@GetMapping("/admin/modify")
+	public String modify(Model model) {
+		System.out.println("come into modify part");
+		return "modifyPassword";
+	}
+
+	@PostMapping("/admin/modify")
+	public String modify(String userName, String seriesNumber, String password, Model model, HttpSession httpSession) {
+
+//		int a = 1;
+//		System.out.println("userName " + userName);
+		//todo 检测是否存在，based on userName and seriesNumber
+
+		//todo if 存在，更改，调到登录界面
+
+		// todo if 不存在，报错
+		return "modifyPassword";
+
+	}
+
 	/**
 	 * 登录
-	 * 
-	 *
 	 * @param model
 	 * @param httpSession
 	 * @return
@@ -83,7 +101,6 @@ public class AdminController {
 			return "redirect:dashboard";
 		} else {
 			model.addAttribute("error", "用户名或密码错误，请重新登录！");
-
 			return "login";
 		}
 	}
@@ -138,7 +155,6 @@ public class AdminController {
 			return "redirect:dashboard";
 		}
 
-		// todo 如果成功，展示个人信息
 		return "redirect:dashboard";
 	}
 
