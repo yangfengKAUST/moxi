@@ -75,13 +75,18 @@ public class AdminController {
 
 //		int a = 1;
 //		System.out.println("userName " + userName);
-		//todo 检测是否存在，based on userName and seriesNumber
+		//todo 检测是否存在，based on userName and seriesNumber\
 
-		//todo if 存在，更改，调到登录界面
+		int numOfAccount = testerMapper.selectAccountExists(userName);
+		if (numOfAccount > 0) {
+			testerMapper.updatePassword(userName, seriesNumber, password);
+			return "login";
+		}else {
 
-		// todo if 不存在，报错
-		return "modifyPassword";
-
+			httpSession.setAttribute("error", "不存在该账户");
+			model.addAttribute("error", "已经注册过信息");
+			return "modifyPassword";
+		}
 	}
 
 	/**
