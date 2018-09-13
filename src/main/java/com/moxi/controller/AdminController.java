@@ -73,8 +73,6 @@ public class AdminController {
 	@PostMapping("/admin/modify")
 	public String modify(String userName, String seriesNumber, String password, Model model, HttpSession httpSession) {
 
-//		int a = 1;
-//		System.out.println("userName " + userName);
 		//todo 检测是否存在，based on userName and seriesNumber\
 
 		int numOfAccount = testerMapper.selectAccountExists(userName);
@@ -82,7 +80,6 @@ public class AdminController {
 			testerMapper.updatePassword(userName, seriesNumber, password);
 			return "login";
 		}else {
-
 			httpSession.setAttribute("error", "不存在该账户");
 			model.addAttribute("error", "已经注册过信息");
 			return "modifyPassword";
@@ -109,7 +106,6 @@ public class AdminController {
 			return "login";
 		}
 	}
-
 
 
 	/**
