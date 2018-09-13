@@ -73,8 +73,6 @@ public class AdminController {
 	@PostMapping("/admin/modify")
 	public String modify(String userName, String seriesNumber, String password, Model model, HttpSession httpSession) {
 
-		//todo 检测是否存在，based on userName and seriesNumber\
-
 		int numOfAccount = testerMapper.selectAccountExists(userName);
 		if (numOfAccount > 0) {
 			testerMapper.updatePassword(userName, seriesNumber, password);
