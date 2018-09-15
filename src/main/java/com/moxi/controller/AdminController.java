@@ -157,4 +157,10 @@ public class AdminController {
 		return "redirect:dashboard";
 	}
 
+	@GetMapping("/admin/show")
+	public String test(Model model) {
+		System.out.println("come into modify part");
+		return "show";
+	}
+
 }
