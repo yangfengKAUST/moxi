@@ -1,27 +1,68 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <!--上边一栏-->
-    <meta charset="UTF-8"/>
-    <title>Insert title here</title>
+    <meta charset="utf  -8">
+    <title>xx信息查询</title>
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/ai/ai-lib.js"></script>
+    <script src="/js/cheat-order.js"></script>
+
+    <link rel="stylesheet" href="../css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/table.css" type="text/css"/>
 </head>
+
 <body>
-<div class="row border-bottom" th:fragment="headerTop">
-    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-        </div>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <span class="m-r-sm text-muted welcome-message">考试报名系统</span>
-            </li>
-            <li class="dropdown">
-            </li>
-            <li class="dropdown">
-            </li>
-        </ul>
-    </nav>
-</div>
+
+<form>
+
+    <table id="table-search" width="80%" align="center" border="1">
+        <tr>
+            <td>预定截止日期</td>
+            <td><input name="checkDate" type="text" id="checkDate"></td>
+        </tr>
+        <tr>
+            <td>SEQ</td>
+            <td><input name="hotelSeq" id="hotelSeq" type="text"></td>
+        </tr>
+        <tr>
+            <td>订单号</td>
+            <td><input type="text" maxlength="50" name="orderNo" id="orderNo"></td>
+        </tr>
+        <tr>
+            <td>排序字段</td>
+            <td><select name="sortFiled" id="sortFiled">
+                <option value="hotelSeq">酒店seq</option>
+                <option value="orderNo">订单号</option>
+                <option value="cellid">cellid</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="搜索" id="btSearch" class="ui right floated positive button btn-search"/>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+<br/>
+
+<table id="table-result" width="80%" align="center" border="1">
+    <tr>
+        <th>hotelSeq</th>
+        <th>酒店名称</th>
+        <th>订单号</th>
+        <th>联系人手机号</th>
+        <th>预定时间</th>
+        <th>userId</th>
+        <th>cellid</th>
+        <th>gps定位城市</th>
+        <th>wifi定位城市</th>
+        <th>定位距离</th>
+    </tr>
+    <tbody id="tbody-result">
+    </tbody>
+</table>
+
 </body>
 </html>
