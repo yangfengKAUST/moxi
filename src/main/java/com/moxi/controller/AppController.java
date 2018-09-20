@@ -6,9 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +24,9 @@ import com.moxi.util.Constant;
 
 @RestController
 public class AppController {
-	
+
+	Logger logger = LoggerFactory.getLogger(AppController.class);
+
 	/*
 	 * GET请求
 	 */
@@ -60,6 +65,7 @@ public class AppController {
 		try {
 			FileUtils.copyInputStreamToFile(imageFile.getInputStream(),new File(realPath, fileName));
 		} catch (IOException e) {
+			logger.error(e.getMessage(), e);
 			e.printStackTrace();
 		}
 		ResObject<Object> object = new ResObject<Object>(Constant.Code01, Constant.Msg01, user, null);
@@ -88,6 +94,8 @@ public class AppController {
 				try {
 					FileUtils.copyInputStreamToFile(file.getInputStream(),new File(realPath, fileName));
 				} catch (IOException e) {
+					logger.error(e.getMessage(),e);
+					logger.error("fail upload error " + e.getMessage() + " " + user.getUserName());
 					e.printStackTrace();
 				}
 			}

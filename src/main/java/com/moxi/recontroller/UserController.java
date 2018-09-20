@@ -16,6 +16,6 @@ public class UserController {
     @ResponseBody
     @JsonRawValue
     public String testTheInterface() {
-        return "success";
+        return "testNumber";
     }
 }

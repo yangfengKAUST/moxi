@@ -11,6 +11,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +34,7 @@ import java.util.List;
 @Service
 public class KnowledgeServiceImpl implements IKnowledgeService{
 
+    Logger logger = LoggerFactory.getLogger(KnowledgeServiceImpl.class);
 
     @Autowired
     ScoreMapper scoreMapper;
@@ -44,11 +47,19 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
     @Override
     public String batchImport(String fileName, MultipartFile mfile, HttpServletRequest request){
 
-        File uploadDir = new  File("/Users/yangfeng/Documents/moxi-master/files");
+
+        String path = request.getSession().getServletContext().getRealPath("upload");
+
+        String name = mfile.getOriginalFilename();
+        File uploadDir =  new File(path + "/" + name);
+
+
+//        File uploadDir = new  File("/Users/yangfeng/Documents/moxi-master/files");
         //创建一个目录 （它的路径名由当前 File 对象指定，包括任一必须的父路径。）
         if (!uploadDir.exists()) uploadDir.mkdirs();
         //新建一个文件
-        File tempFile = new File("/Users/yangfeng/Documents/moxi-master/files/" + new Date().getTime() + ".xlsx");
+//        File tempFile = new File("/Users/yangfeng/Documents/moxi-master/files/" + new Date().getTime() + ".xlsx");
+        File tempFile = new File(path + "/" + name + "/" + new Date().getTime() + ".xlsx");
         //初始化输入流
         InputStream is = null;
         try{
@@ -93,10 +104,12 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                     is.close();
                 }catch(IOException e){
                     is = null;
-                    e.printStackTrace();
+                    logger.error(e.getMessage(), e);
+//                    e.printStackTrace();
                 }
             }
         }
+        logger.error("导入出错！请检查数据格式！");
         return "导入出错！请检查数据格式！";
     }
 
@@ -106,7 +119,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
         ScoreUpload scoreUpload = scoreMapper.getScoreInformation(apply_number);
         if (scoreUpload == null) {
             System.out.println("score upload ");
-            return null;
+            return scoreUpload;
         }else {
             return scoreUpload;
         }
@@ -178,6 +191,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
                         scoreUpload.setRank_condition(rank);
                     }
                 }else {
+                    logger.error("传入的列为空 " + tempFile.getName());
                     System.out.println("传入的列为空");
                 }
             }

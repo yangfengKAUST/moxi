@@ -29,85 +29,126 @@
         <form class="m-t" role="form" action="personalInfo" method="post">
             <!--<form class="m-t" role="form" action="login.html">-->
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="招考序号" name = "seriesNumber" required=""/>
+                <input type="text" class="form-control" placeholder="招考序号(*)" name = "seriesNumber" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="报名序号" name="applyNumber" required=""/>
+                <input type="text" class="form-control" placeholder="报名序号(*)" name="applyNumber" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="姓名" name = "name" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="性别" name = "gender" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="证件类别" name="cardFormat" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="证件号码" name="cardId" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="datetime" class="form-control" placeholder="出生日期" name = "birth" required=""/>
+                <input type="text" class="form-control" placeholder="姓名(*)" name = "name" required=""/>
             </div>
             <!--<div class="form-group">-->
                 <!--<input type="text" class="form-control" placeholder="性别" name = "gender" required=""/>-->
             <!--</div>-->
+
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="民族" name="nation" required=""/>
+                <select name="gender" class="form-control" placeholder="-性别-(*)" required="">
+                    <option>-性别-</option>
+                    <option value="1">男</option>
+                    <option value="2">女</option>
+                </select>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="证件类别" name="cardFormat" required=""/>-->
+            <!--</div>-->
+            <div class="form-group">
+                <select name="cardFormat" class="form-control" placeholder="证件类别(*)" required="">
+                    <option>-证件类别-</option>
+                    <option value="身份证">身份证</option>
+                </select>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="政治面貌" name="politics" required=""/>
+                <input type="text" class="form-control" placeholder="证件号码(*)" name="cardId" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="婚姻情况" name="marriage" required=""/>
+                <input type="datetime" class="form-control" placeholder="出生日期(*)" name = "birth" required=""/>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="民族(*)" name="nation" required=""/>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<select name="nation" class="form-control" placeholder="民族(*)" required="">-->
+                    <!--<option>-民族-</option>-->
+                    <!--<option value="身份证">身份证</option>-->
+                <!--</select>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="政治面貌" name="politics" required=""/>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <select name="politics" class="form-control" placeholder="政治面貌" required="">
+                    <option>-政治面貌-</option>
+                    <option value="党员">党员</option>
+                    <option value="群众">群众</option>
+                </select>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="婚姻情况" name="marriage" required=""/>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <select name="marriage" class="form-control" placeholder="婚姻情况(*)" required="">
+                    <option>-婚姻情况-</option>
+                    <option value="已婚">已婚</option>
+                    <option value="未婚">未婚</option>
+                </select>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="奖励状况(*)" name="award" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="奖励状况" name="award" required=""/>
+                <input type="text" class="form-control" placeholder="学历(*)" name="education" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="学历" name="education" required=""/>
+                <input type="text" class="form-control" placeholder="学位(*)" name="educationLevel" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="学位" name="educationLevel" required=""/>
+                <input type="text" class="form-control" placeholder="专业(*)" name="major" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="专业" name="major" required=""/>
+                <input type="text" class="form-control" placeholder="毕业院校(*)" name="school" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="毕业院校" name="school" required=""/>
+                <input type="text" class="form-control" placeholder="毕业时间(*)" name="afterSchool" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="毕业时间" name="afterSchool" required=""/>
+                <input type="text" class="form-control" placeholder="专业技术资格(*)" name="majorLevel" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="专业技术资格" name="majorLevel" required=""/>
+                <input type="text" class="form-control" placeholder="备注" name="note"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="备注" name="note" required=""/>
+                <input type="text" class="form-control" placeholder="家庭成员(*)" name="familyNumber" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="家庭成员" name="familyNumber" required=""/>
+                <input type="text " class="form-control" placeholder="学习以及工作经历(*)" name="passLife" required=""/>
             </div>
             <div class="form-group">
-                <input type="text " class="form-control" placeholder="学习以及工作经历" name="passLife" required=""/>
+                <input type="text" class="form-control" placeholder="移动电话(*)" name="phoneNumber" required=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="移动电话" name="phoneNumber" required=""/>
+                <input type="text" class="form-control" placeholder="固定电话(*)" name="teleNumber" required=""/>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="固定电话" name="teleNumber" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="照片" name="photoNumber" required=""/>
-            </div>
+
+            <span>上传个人照片, 格式为jpg，图片小于1M的2寸照片</span>
+            <span><input id="pic" type="file" name = 'photoNumber' size="40" accept = "image/*" onchange = "selectFile()"/>
+                <button id = "submit" onclick = "detect()">提交照片</button>
+            </span>
 
 
             <button type="submit" class="btn btn-primary block full-width m-b">填写</button>
 
-            <!--<p class="text-muted text-center"><small>Already have an account?</small></p>-->
-            <!--<a class="btn btn-sm btn-white btn-block" th:href="login" href="login.html">登录</a>-->
+
         </form>
-        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
     </div>
 </div>
 
@@ -124,6 +165,114 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+    var form = new FormData();//通过HTML表单创建FormData对象
+    function selectFile(){
+        var files = document.getElementById('photoNumber').files;
+        console.log(files[0]);
+        if(files.length == 0){
+            return;
+        }
+        var file = files[0];
+        var size = file.size;
+        if(size >= 1*1024*1024){
+            alert('文件大于1兆!');
+            return false;
+        }
+
+
+        testWidthHeight(files);
+
+        if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+            alert('不是有效的图片文件!');
+            return;
+        }
+
+
+        //把上传的图片显示出来
+        var reader = new FileReader();
+        // 将文件以Data URL形式进行读入页面
+        console.log(reader);
+        reader.readAsBinaryString(file);
+        reader.onload = function(f){
+            var result = document.getElementById("result");
+            var src = "data:" + file.type + ";base64," + window.btoa(this.result);
+            result.innerHTML = '<img src ="'+src+'"/>';
+        };
+        console.log('file',file);
+        form.append('file',file);
+        console.log(form.get('file'));
+    }
+
+
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+    <!--
+
+    function testWidthHeight(file){
+        debugger;
+
+
+        if(file.files && file.files[0]){
+            var fileData = file.files[0];
+
+            //读取图片数据
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var data = e.target.result;
+                //加载图片获取图片真实宽度和高度
+                var image = new Image();
+                image.onload=function(){
+                    var width = image.width;
+                    var height = image.height;
+
+                    if(width != 350 && height != 520) {
+                        alert('不是有效的图片文件!');
+                        return false;
+                    }else {
+                        alert("宽度为 "+ width + " 高度为 " + height);
+                        return false
+                    }
+                };
+                image.src= data;
+            };
+            reader.readAsDataURL(fileData);
+
+        }else {
+            var fileData = file.files[0];
+
+            //读取图片数据
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var data = e.target.result;
+                //加载图片获取图片真实宽度和高度
+                var image = new Image();
+                image.onload=function(){
+                    var width = image.width;
+                    var height = image.height;
+
+                    if(width != 350 && height != 520) {
+                        alert('不是有效的图片文件!');
+                        return false;
+                    }else {
+                        alert("宽度为 "+ width + " 高度为 " + height);
+                        return false
+                    }
+                };
+                image.src= data;
+            };
+            reader.readAsDataURL(fileData);
+        }
+    function detect(){
+        var files1 = document.getElementById('photoNumber').files;
+        var file1 = files1[0];
+
+        testWidthHeight(file1)
+    }
+    //-->
+</SCRIPT>
 </body>
 
 </html>

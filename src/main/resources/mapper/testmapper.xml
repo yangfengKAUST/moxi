@@ -43,6 +43,12 @@
         and id_number = #{id_number}
     </select>
     
+    <update id="updatePassword">
+        UPDATE schema.user_apply set password = #{password}
+        where series_numbe = #{series_number}
+        and account = #{account}
+    </update>
+    
 
     <resultMap type="com.moxi.pojo.Tester" id="testMap">
         <result property="seriesNumber" column="series_number"></result>

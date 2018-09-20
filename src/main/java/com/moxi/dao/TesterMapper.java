@@ -57,4 +57,14 @@ public interface TesterMapper {
      */
     int getIfPersonalInfoExit(@Param("series_number") String series_number,
                               @Param("id_number") String id_number);
+
+    /**
+     * 修改密码
+     * @param userName
+     * @param seriesNumber
+     * @param password
+     */
+    void updatePassword(@Param("account") String userName,
+                        @Param("series_number") String seriesNumber,
+                        @Param("password") String password);
 }

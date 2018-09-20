@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import com.moxi.dao.TesterMapper;
 import com.moxi.pojo.PersonalInfomation;
 import com.moxi.pojo.Tester;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AdminController {
+
+	Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 
 	@Autowired
@@ -37,11 +41,12 @@ public class AdminController {
 			}else {
 				//todo 后续action
 				model.addAttribute("error", "该账号已经被注册过了，请重试! ");
+				logger.error("error", "该账号已经被注册过了，请重试! " + tester.getSeriesNumber());
 				return "register";
 			}
 		}catch (Exception e) {
-			System.out.print("failure " + e.getMessage());
-			System.out.print(e);
+			logger.error("failure " + e.getMessage() + " " + tester.getSeriesNumber());
+			logger.error(e.getMessage(), e);
 			model.addAttribute("error", "发生错误");
 			return "register";
 		}
@@ -59,10 +64,28 @@ public class AdminController {
 		return "login";
 	}
 
+	@GetMapping("/admin/modify")
+	public String modify(Model model) {
+		System.out.println("come into modify part");
+		return "modifyPassword";
+	}
+
+	@PostMapping("/admin/modify")
+	public String modify(String userName, String seriesNumber, String password, Model model, HttpSession httpSession) {
+
+		int numOfAccount = testerMapper.selectAccountExists(userName);
+		if (numOfAccount > 0) {
+			testerMapper.updatePassword(userName, seriesNumber, password);
+			return "login";
+		}else {
+			httpSession.setAttribute("error", "不存在该账户");
+			model.addAttribute("error", "已经注册过信息");
+			return "modifyPassword";
+		}
+	}
+
 	/**
 	 * 登录
-	 * 
-	 *
 	 * @param model
 	 * @param httpSession
 	 * @return
@@ -74,13 +97,13 @@ public class AdminController {
 		Tester tester = testerMapper.selectTesterByAccountAndPassword(userName, password);
 		if (tester != null) {
 			httpSession.setAttribute("admin", tester);
+			// todo 登录成功后的跳转
 			return "redirect:dashboard";
 		} else {
 			model.addAttribute("error", "用户名或密码错误，请重新登录！");
 			return "login";
 		}
 	}
-
 
 
 	/**
@@ -96,7 +119,6 @@ public class AdminController {
 
 	/**
 	 * 仪表板页面
-	 * 
 	 * @param model
 	 * @return
 	 */
@@ -126,13 +148,19 @@ public class AdminController {
 				testerMapper.saveTesterInfo(personalInfomation);
 			}
 		}catch (Exception e) {
-			System.out.println("error " + e.getMessage());
+			logger.error(e.getMessage(), e);
+			logger.error("error " + e.getMessage() + " " + personalInfomation.getSeriesNumber());
 			model.addAttribute("error", e);
 			return "redirect:dashboard";
 		}
 
-		// todo 如果成功，展示个人信息
 		return "redirect:dashboard";
+	}
+
+	@GetMapping("/admin/show")
+	public String test(Model model) {
+		System.out.println("come into modify part");
+		return "show";
 	}
 
 }
