@@ -1,5 +1,8 @@
+
+
 $(function () {
     $('#btSearch').click(function () {
+        console.log("come here .. ")
         var checkDate = $('#checkDate').val();
         var orderNo = $('#orderNo').val();
         var sortFiled = $('#sortFiled').val();
@@ -20,6 +23,8 @@ $(function () {
                 if (msg.ret) {
                     var str = "";
                     var data = msg.data;
+
+                    console.log("come here")
 
                     for (i in data) {
                         str += "<tr>" +
