@@ -40,6 +40,8 @@ public class UserControllerTest {
         result.setDistance("1200m");
         result.setCreateTime("2018-08-24");
 
+        // todo read data from database
+
         List<SearchResult> list = new ArrayList<>();
         list.add(result);
         list.add(result);
