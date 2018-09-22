@@ -67,4 +67,15 @@ public interface TesterMapper {
     void updatePassword(@Param("account") String userName,
                         @Param("series_number") String seriesNumber,
                         @Param("password") String password);
+
+    /**
+     * 通过两个字段查找考生信息，为打印做准备
+     * @param series_number
+     * @param id_number
+     * @return
+     */
+    PersonalInfomation getPersonalInfo(@Param("series_number") String series_number,
+                                       @Param("id_number") String id_number);
+
+
 }

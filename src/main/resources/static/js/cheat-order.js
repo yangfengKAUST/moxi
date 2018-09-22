@@ -2,7 +2,6 @@
 
 $(function () {
     $('#btSearch').click(function () {
-        console.log("come here .. ")
         var checkDate = $('#checkDate').val();
         var orderNo = $('#orderNo').val();
         var sortFiled = $('#sortFiled').val();

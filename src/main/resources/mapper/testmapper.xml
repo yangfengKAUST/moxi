@@ -49,6 +49,12 @@
         and account = #{account}
     </update>
     
+    <select id="getPersonalInfo" resultMap = "testerInfo">
+        SELECT * from schema.test_information
+        where series_number = #{series_number}
+        and id_number = #{id_number}
+    </select>
+    
 
     <resultMap type="com.moxi.pojo.Tester" id="testMap">
         <result property="seriesNumber" column="series_number"></result>
@@ -57,5 +63,31 @@
         <result property="account" column="account"></result>
         <result property="password" column="password"></result>
         <result property="phoneNumber" column="phone_number"></result>
+    </resultMap>
+
+    <resultMap id="testerInfo" type="com.moxi.pojo.PersonalInfomation">
+        <result property="seriesNumber" column="series_number" />
+        <result property="applyNumber" column="apply_number" />
+        <result property="name" column="name" />
+        <result property="gender" column="sex" />
+        <result property="cardFormat" column="id_type" />
+        <result property="cardId" column="id_number" />
+        <result property="birth" column="birth_date" />
+        <result property="nation" column="nation" />
+        <result property="politics" column="politics" />
+        <result property="marriage" column="marriage" />
+        <result property="award" column="reward" />
+        <result property="education" column="education" />
+        <result property="educationLevel" column="education_level" />
+        <result property="major" column="major" />
+        <result property="school" column="school" />
+        <result property="afterSchool" column="commercement" />
+        <result property="majorLevel" column="major_level" />
+        <result property="note" column="note" />
+        <result property="familyNumber" column="family_member" />
+        <result property="passLife" column="education_history" />
+        <result property="phoneNumber" column="phone_number" />
+        <result property="teleNumber" column="telephone" />
+        <result property="status" column="check_status" />
     </resultMap>
 </mapper>
