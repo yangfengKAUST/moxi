@@ -20,9 +20,9 @@ $(function () {
                     for (var i = 0; i < msg.length; i++ ) {
                         var src = msg[i];
 
-                        // th:src="@{/img/china-logo.jpg}"
+                        //todo
                         var html1 = '<img onload="AutoResizeImage(350,520,this)" ' +
-                            'src="'+src+'"></a><input id="r1" type="radio" value="0" name="gender">不通过</input><br>';
+                            'src="'+src+'"></a><input type="button" value="不通过" onclick="" /><br>';
                         pichtml += html1;
                     }
                 }
@@ -68,6 +68,11 @@ function AutoResizeImage(maxWidth, maxHeight, objImg) {
 function showPicDetail(pictureHtml, d1) {
     var d1 = document.getElementById('my-div-id');
     d1.insertAdjacentHTML('beforeend', pictureHtml);
+}
+
+function pictureCheckProcess(idNumber) {
+    var value = idNumber;
+    console.log("id number is" + value)
 }
 
 
