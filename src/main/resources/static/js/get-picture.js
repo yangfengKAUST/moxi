@@ -20,7 +20,6 @@ $(function () {
                     for (var i = 0; i < msg.length; i++ ) {
                         var src = msg[i];
 
-                        //todo
                         var html1 = '<img onload="AutoResizeImage(350,520,this)" ' +
                             'src="'+src+'"></a><input type="radio" name="'+src+'" value="'+src+'"><br>';
                         pichtml += html1;
