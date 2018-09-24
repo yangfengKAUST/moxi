@@ -44,8 +44,6 @@ public class FileController {
             return "redirect:upload";
         }
 
-        // get file name
-
         String fileName=file.getOriginalFilename();
 
         if(!ExcelImportUtils.validateExcel(fileName)){
@@ -67,14 +65,13 @@ public class FileController {
     }
 
     @PostMapping("console/picupload")
-    public void uploadPicture(@RequestParam(value="pic") MultipartFile picture, HttpServletRequest request) {
+    public String uploadPicture(@RequestParam(value="pic") MultipartFile picture, HttpServletRequest request) {
         if (picture == null) {
             logger.info("given picture is null " + picture.getName());
-            System.out.println("it is null");
-        }else {
-            System.out.println("it is not null");
         }
-        String path = request.getSession().getServletContext().getRealPath("upload");
+        String path = request.getSession().getServletContext().getRealPath("src/main/webapp/upload");
+//        String pathSave = "./" + picture.getName();
+//        String pathSave = request.getSession().getServletContext().getResourcePaths("/upload");
         String picName = picture.getOriginalFilename();
         File dir = new File(path);
         File newPicture =  new File(path + "/" + picName);
@@ -86,12 +83,13 @@ public class FileController {
         try {
             picture.transferTo(newPicture);
         }catch (Exception e) {
-            System.out.println("error " + e.getMessage());
             logger.error("error " + e.getMessage() + " " + picture.getName());
             logger.error(e.getMessage(), e);
+            return "files/uploadpic";
         }
         // todo need to rewrite
 //        return "/upload"+"/"+picName;
+        return "files/uploadpic";
     }
 
     @GetMapping("console/picupload")

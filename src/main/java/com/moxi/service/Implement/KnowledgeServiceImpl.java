@@ -48,7 +48,7 @@ public class KnowledgeServiceImpl implements IKnowledgeService{
     public String batchImport(String fileName, MultipartFile mfile, HttpServletRequest request){
 
 
-        String path = request.getSession().getServletContext().getRealPath("upload");
+        String path = request.getSession().getServletContext().getRealPath("src/main/webapp/upload");
 
         String name = mfile.getOriginalFilename();
         File uploadDir =  new File(path + "/" + name);
