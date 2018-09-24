@@ -22,7 +22,7 @@ $(function () {
 
                         //todo
                         var html1 = '<img onload="AutoResizeImage(350,520,this)" ' +
-                            'src="'+src+'"></a><input type="button" value="不通过" onclick="" /><br>';
+                            'src="'+src+'"></a><input type="radio" name="'+src+'" value="'+src+'"><br>';
                         pichtml += html1;
                     }
                 }
