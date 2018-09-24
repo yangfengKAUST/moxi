@@ -67,7 +67,7 @@ public class FileController {
     }
 
     @PostMapping("console/picupload")
-    public String uploadPicture(@RequestParam(value="pic") MultipartFile picture, HttpServletRequest request) {
+    public void uploadPicture(@RequestParam(value="pic") MultipartFile picture, HttpServletRequest request) {
         if (picture == null) {
             logger.info("given picture is null " + picture.getName());
             System.out.println("it is null");
@@ -91,7 +91,12 @@ public class FileController {
             logger.error(e.getMessage(), e);
         }
         // todo need to rewrite
-        return "/upload"+"/"+picName;
+//        return "/upload"+"/"+picName;
+    }
+
+    @GetMapping("console/picupload")
+    public String uploadPicture(Model model) {
+        return "files/uploadpic";
     }
 
 }
