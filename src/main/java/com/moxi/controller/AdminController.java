@@ -137,6 +137,7 @@ public class AdminController {
 	@PostMapping("admin/personalInfo")
 	public String personalInfoSave(Model model, PersonalInfomation personalInfomation, HttpSession httpSession) {
 		System.out.println("come into personalInfo part");
+		logger.info("come into personal information part");
 		// check status, 是否已经录入过信息
 		try {
 			int num = testerMapper.getIfPersonalInfoExit(personalInfomation.getSeriesNumber(), personalInfomation.getCardId());
@@ -151,7 +152,7 @@ public class AdminController {
 			logger.error(e.getMessage(), e);
 			logger.error("error " + e.getMessage() + " " + personalInfomation.getSeriesNumber());
 			model.addAttribute("error", e);
-			return "redirect:dashboard";
+			return "apply";
 		}
 
 		return "redirect:dashboard";

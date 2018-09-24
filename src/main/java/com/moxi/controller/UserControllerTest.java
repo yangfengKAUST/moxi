@@ -67,12 +67,10 @@ public class UserControllerTest {
                 logger.error("given param is error, 传入参数 = {} " + JSON.toJSONString(queryPersonalParam));
                 return APIResponse.returnFail("given param is error");
             } else {
-                // todo read data from database
                 PersonalInfomation personalInfomation = testerMapper.getPersonalInfo(queryPersonalParam.getSeriesNumber(), queryPersonalParam.getIdNumber());
                 List<PersonalInfomation> list =  new ArrayList<>();
                 list.add(personalInfomation);
                 return APIResponse.returnSuccess(list);
-                // todo picture 信息
             }
         }catch (Exception e) {
             logger.error("query personal info error " + e.getMessage());

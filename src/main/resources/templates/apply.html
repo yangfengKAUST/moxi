@@ -69,16 +69,6 @@
                 <input type="text" class="form-control" placeholder="民族(*)" name="nation" required=""/>
             </div>
 
-            <!--<div class="form-group">-->
-                <!--<select name="nation" class="form-control" placeholder="民族(*)" required="">-->
-                    <!--<option>-民族-</option>-->
-                    <!--<option value="身份证">身份证</option>-->
-                <!--</select>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<input type="text" class="form-control" placeholder="政治面貌" name="politics" required=""/>-->
-            <!--</div>-->
 
             <div class="form-group">
                 <select name="politics" class="form-control" placeholder="政治面貌" required="">
@@ -88,9 +78,6 @@
                 </select>
             </div>
 
-            <!--<div class="form-group">-->
-                <!--<input type="text" class="form-control" placeholder="婚姻情况" name="marriage" required=""/>-->
-            <!--</div>-->
 
             <div class="form-group">
                 <select name="marriage" class="form-control" placeholder="婚姻情况(*)" required="">
@@ -139,10 +126,10 @@
                 <input type="text" class="form-control" placeholder="固定电话(*)" name="teleNumber" required=""/>
             </div>
 
-            <span>上传个人照片, 格式为jpg，图片小于1M的2寸照片</span>
-            <span><input id="pic" type="file" name = 'photoNumber' size="40" accept = "image/*" onchange = "selectFile()"/>
-                <button id = "submit" onclick = "detect()">提交照片</button>
-            </span>
+            <!--<span>上传个人照片, 格式为jpg，图片小于1M的2寸照片</span>-->
+            <!--<span><input id="pic" type="file" name = 'pic' size="40" accept = "image/*" onchange = "selectFile()"/>-->
+                <!--<button id = "submit" onclick = "detect()">提交照片</button>-->
+            <!--</span>-->
 
 
             <button type="submit" class="btn btn-primary block full-width m-b">填写</button>
@@ -169,7 +156,7 @@
 <script type="text/javascript">
     var form = new FormData();//通过HTML表单创建FormData对象
     function selectFile(){
-        var files = document.getElementById('photoNumber').files;
+        var files = document.getElementById('pic').files;
         console.log(files[0]);
         if(files.length == 0){
             return;
@@ -211,11 +198,13 @@
 <SCRIPT LANGUAGE="JavaScript">
     <!--
 
-    function testWidthHeight(file){
+    function testWidthHeight(file) {
         debugger;
 
 
-        if(file.files && file.files[0]){
+        if (file.files && file.files[0]) {
+            console.log(file.size())
+            console.log(file.files.length)
             var fileData = file.files[0];
 
             //读取图片数据
@@ -224,23 +213,23 @@
                 var data = e.target.result;
                 //加载图片获取图片真实宽度和高度
                 var image = new Image();
-                image.onload=function(){
+                image.onload = function () {
                     var width = image.width;
                     var height = image.height;
 
-                    if(width != 350 && height != 520) {
+                    if (width != 350 && height != 520) {
                         alert('不是有效的图片文件!');
                         return false;
-                    }else {
-                        alert("宽度为 "+ width + " 高度为 " + height);
+                    } else {
+                        alert("宽度为 " + width + " 高度为 " + height);
                         return false
                     }
                 };
-                image.src= data;
+                image.src = data;
             };
             reader.readAsDataURL(fileData);
 
-        }else {
+        } else {
             var fileData = file.files[0];
 
             //读取图片数据
@@ -249,27 +238,28 @@
                 var data = e.target.result;
                 //加载图片获取图片真实宽度和高度
                 var image = new Image();
-                image.onload=function(){
+                image.onload = function () {
                     var width = image.width;
                     var height = image.height;
 
-                    if(width != 350 && height != 520) {
+                    if (width != 350 && height != 520) {
                         alert('不是有效的图片文件!');
                         return false;
-                    }else {
-                        alert("宽度为 "+ width + " 高度为 " + height);
+                    } else {
+                        alert("宽度为 " + width + " 高度为 " + height);
                         return false
                     }
                 };
-                image.src= data;
+                image.src = data;
             };
             reader.readAsDataURL(fileData);
         }
-    function detect(){
-        var files1 = document.getElementById('photoNumber').files;
-        var file1 = files1[0];
+    }
+    function detect() {
+        var files1 = document.getElementById('pic').files;
+//        var file1 = files1[0];
 
-        testWidthHeight(file1)
+        testWidthHeight(files1)
     }
     //-->
 </SCRIPT>
