@@ -73,5 +73,3 @@ function pictureCheckProcess(idNumber) {
     var value = idNumber;
     console.log("id number is" + value)
 }
-
-
