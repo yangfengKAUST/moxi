@@ -55,6 +55,11 @@
         and id_number = #{id_number}
     </select>
     
+    <update id="updatePicFailure">
+        UPDATE schema.test_information set check_status = #{check_status}
+        where id_number = #{id_number}
+    </update>
+    
 
     <resultMap type="com.moxi.pojo.Tester" id="testMap">
         <result property="seriesNumber" column="series_number"></result>

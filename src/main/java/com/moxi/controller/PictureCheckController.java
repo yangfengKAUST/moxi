@@ -1,14 +1,12 @@
 package com.moxi.controller;
 
-import com.moxi.pojo.PersonalInfomation;
+import com.alibaba.fastjson.JSONObject;
+import com.moxi.dao.TesterMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +21,9 @@ import java.util.ArrayList;
 @RequestMapping("/pic")
 public class PictureCheckController {
     private Logger logger = LoggerFactory.getLogger(PictureCheckController.class);
+
+    @Autowired
+    TesterMapper testerMapper;
 
     @RequestMapping(value = "/pictureCheck", method = RequestMethod.POST)
     @ResponseBody
@@ -68,12 +69,24 @@ public class PictureCheckController {
     }
 
 
+    /**
+     * 根据身份证号码确定本人的照片不合格
+     * @param idNumber 身份证号码
+     * @param httpSession
+     * @return
+     */
     @RequestMapping(value = "/pictureCheckProcess", method = RequestMethod.POST)
     @ResponseBody
-    public String pictureCheckProcess(Model model, String[] result, HttpSession httpSession) {
-        int a = 1;
-        int b = 2;
-        return null;
+    public void pictureCheckProcess(@RequestBody String idNumber, HttpSession httpSession) {
+        try {
+            JSONObject jsonObject = JSONObject.parseObject(idNumber);
+            String temp = jsonObject.getString("result");
+            // 1 代表未审核通过
+            testerMapper.updatePicFailure(temp, 1);
+        }catch (Exception e) {
+            logger.error("update picture unpass error " + e.getMessage() + " id is " +idNumber);
+            logger.error(e.getMessage(),e);
+        }
     }
 
 }

@@ -78,9 +78,23 @@ function showPicDetail(pictureHtml, d1) {
 
 function onModified(src){
     // console.log(src)
-    alert('我要修改用户名称为' + src + '的一行');
-    /**
-     其它代码
-     **/
+    // alert('我要修改用户名称为' + src + '的一行');
+    // /**
+    //  其它代码
+    //  **/
+    $.ajax({
+        type: "post",
+        contentType: "application/json;charset=utf-8",
+        url: "/pic/pictureCheckProcess",
+        data: "{\"result\":\"" + src
+        + "\"}",
+        success: function (msg) {
+
+        },
+        error: function (e) {
+            console.log(e)
+            alert("获取图片list失败")
+        }
+    });
 }
 

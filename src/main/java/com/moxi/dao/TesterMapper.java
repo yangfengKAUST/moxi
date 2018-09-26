@@ -77,5 +77,10 @@ public interface TesterMapper {
     PersonalInfomation getPersonalInfo(@Param("series_number") String series_number,
                                        @Param("id_number") String id_number);
 
-
+    /**
+     * 根据身份证号码，更新考生的照片信息不符合要求
+     * @param idNumber
+     */
+    void updatePicFailure(@Param("id_number") String idNumber,
+                          @Param("check_status") int checkStatus);
 }
