@@ -24,22 +24,24 @@ public class AdminController {
 	TesterMapper testerMapper;
 
 	@GetMapping("/admin/registerSave")
+	public String registerSave(Model model) {
+		return "register";
+	}
+
+	@PostMapping("/admin/registerSave")
 	public String registerSave(Model model, Tester tester, HttpSession httpSession) {
-		System.out.print("coming to the backend of register Save");
 
 		try {
 			int num = testerMapper.selectTesterExists(tester.getSeriesNumber(), tester.getIDCard());
 			int numOfAccount = testerMapper.selectAccountExists(tester.getAccount());
 
 			if (numOfAccount > 0){
-				//todo 后续action
 				model.addAttribute("error", "该用户本次考试已经注册过了！");
 				return "login";
 			}
 			if (num == 0) {
 				testerMapper.insertTester(tester);
 			}else {
-				//todo 后续action
 				model.addAttribute("error", "该账号已经被注册过了，请重试! ");
 				logger.error("error", "该账号已经被注册过了，请重试! " + tester.getSeriesNumber());
 				return "register";
@@ -136,7 +138,6 @@ public class AdminController {
 
 	@PostMapping("admin/personalInfo")
 	public String personalInfoSave(Model model, PersonalInfomation personalInfomation, HttpSession httpSession) {
-		System.out.println("come into personalInfo part");
 		logger.info("come into personal information part");
 		// check status, 是否已经录入过信息
 		try {
@@ -155,7 +156,8 @@ public class AdminController {
 			return "apply";
 		}
 
-		return "redirect:dashboard";
+		// 到上传图片页面
+		return "files/uploadpic";
 	}
 
 	@GetMapping("/admin/show")

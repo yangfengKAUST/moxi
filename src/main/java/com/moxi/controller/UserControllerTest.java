@@ -24,37 +24,6 @@ public class UserControllerTest {
     @Autowired
     TesterMapper testerMapper;
 
-//
-//    @RequestMapping(value = "/queryCheatOrder", method = RequestMethod.POST)
-//    @ResponseBody
-//    public APIResponse<List<SearchResult>> queryCheatOrder(
-//            @RequestBody Search search,
-//            HttpServletResponse response) {
-//        logger.info("传入参数 = {}", JSON.toJSONString(search));
-//
-//        SearchResult result = new SearchResult();
-//        result.setHotelName("测试酒店");
-//        result.setUserId("123456");
-//        result.setOrderNo("abc");
-//        result.setHotelSeq("13143rqw34523");
-//        result.setCellid("123");
-//        result.setCellCity("北京");
-//        result.setGpsCity("北京");
-//        result.setUserPhone("15210108091");
-//        result.setDistance("1200m");
-//        result.setCreateTime("2018-08-24");
-//
-//        List<SearchResult> list = new ArrayList<>();
-//        list.add(result);
-//        list.add(result);
-//        return APIResponse.returnSuccess(list);
-//    }
-//
-//    @GetMapping(value = "/queryCheatOrder")
-//    public String queryCheatOrder() {
-//        return "show";
-//    }
-
     @RequestMapping(value = "/queryPersonalInfo", method = RequestMethod.POST)
     @ResponseBody
     public APIResponse<List<PersonalInfomation>> queryPersonalInfo(

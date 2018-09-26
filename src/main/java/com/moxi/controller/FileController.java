@@ -69,13 +69,13 @@ public class FileController {
         if (picture == null) {
             logger.info("given picture is null " + picture.getName());
         }
-        String path = request.getSession().getServletContext().getRealPath("src/main/webapp/upload");
+        String pathTemp = request.getSession().getServletContext().getRealPath("/upload/");
 //        String pathSave = "./" + picture.getName();
 //        String pathSave = request.getSession().getServletContext().getResourcePaths("/upload");
+        String path = pathTemp.replace("webapp", "resources/static");
         String picName = picture.getOriginalFilename();
         File dir = new File(path);
         File newPicture =  new File(path + "/" + picName);
-        System.out.println(picture.getSize());
         if(!dir.exists()){
             dir.mkdirs();
         }
