@@ -83,4 +83,11 @@ public interface TesterMapper {
      */
     void updatePicFailure(@Param("id_number") String idNumber,
                           @Param("check_status") int checkStatus);
+
+    /**
+     * 更新图片的存储位置
+     * @param photo
+     */
+    void updatePicLoad(@Param("photo") String photo,
+                       @Param("id_number") String idNumber);
 }

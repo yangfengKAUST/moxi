@@ -59,6 +59,11 @@
         UPDATE schema.test_information set check_status = #{check_status}
         where id_number = #{id_number}
     </update>
+
+    <update id="updatePicLoad">
+        UPDATE schema.test_information set photo = #{photo}
+        where id_number = #{id_number}
+    </update>
     
 
     <resultMap type="com.moxi.pojo.Tester" id="testMap">
@@ -94,5 +99,6 @@
         <result property="phoneNumber" column="phone_number" />
         <result property="teleNumber" column="telephone" />
         <result property="status" column="check_status" />
+        <result property="photoNumber" column="photo" />
     </resultMap>
 </mapper>

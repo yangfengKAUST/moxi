@@ -22,6 +22,14 @@ $(function () {
                     var data = msg.data;
 
                     for (i in data) {
+
+                        var picPath = data[i].photoNumber
+                        // var last = picPath.split('/')
+                        // var name = last[last.length - 1]
+                        // var idGroup = name.split('.')
+                        // var idName = idGroup[0]
+
+                        // console.log("photo number " + idName)
                         str += "<tr>" +
                             "<td align='center'>" + data[i].seriesNumber + "</td>" +
                             "<td align='center'>" + data[i].applyNumber + "</td>" +
@@ -46,6 +54,8 @@ $(function () {
                             "<td align='center'>" + data[i].phoneNumber + "</td>" +
                             "<td align='center'>" + data[i].teleNumber + "</td>" +
                             "<td align='center'>" + data[i].status + "</td>" +
+                            '<img onload="AutoResizeImage(350,520,this)" ' +
+                            'src="'+picPath+'">' +
                             "</tr>";
                     }
                     tbody.innerHTML = str;

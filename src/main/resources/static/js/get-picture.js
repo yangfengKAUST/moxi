@@ -93,7 +93,7 @@ function onModified(src){
         },
         error: function (e) {
             console.log(e)
-            alert("获取图片list失败")
+            alert("获取考生图片失败")
         }
     });
 }
