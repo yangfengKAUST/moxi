@@ -68,6 +68,10 @@ public class PictureCheckController {
         return "checkPicinfo";
     }
 
+    @GetMapping(value = "/main")
+    public String mainCheck() {
+        return "picCheckMain";
+    }
 
     /**
      * 根据身份证号码确定本人的照片不合格

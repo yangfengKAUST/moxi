@@ -32,7 +32,7 @@
         <tr>
             <td></td>
             <td>
-                <input type="button" value="搜索" id="picSearch" class="ui right floated positive button btn-search"/>
+                <button onclick="tz()">进行图片审核</button>
             </td>
 
         </tr>
@@ -46,6 +46,11 @@
 <!-- Sweet alert -->
 <script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
 
+<script>
+    function tz(){
+        window.location.href='pictureCheck';
+    }
+</script>
 
 
 
