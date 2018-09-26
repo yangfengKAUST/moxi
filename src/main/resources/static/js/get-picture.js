@@ -19,9 +19,15 @@ $(function () {
                 }else {
                     for (var i = 0; i < msg.length; i++ ) {
                         var src = msg[i];
+                        var last = src.split('/')
+                        var name = last[last.length - 1]
+                        var idGroup = name.split('.')
+                        var idName = idGroup[0]
+
+                        //todo add a function to trans id into full words, just in case X
 
                         var html1 = '<img onload="AutoResizeImage(350,520,this)" ' +
-                            'src="'+src+'"></a><input type="radio" name="'+src+'" value="'+src+'"><br>';
+                            'src="'+src+'"><a href="javascript:void(0);" onclick="onModified('+idName+')">图片不合格？</a><br>';
                         pichtml += html1;
                     }
                 }
@@ -69,7 +75,12 @@ function showPicDetail(pictureHtml, d1) {
     d1.insertAdjacentHTML('beforeend', pictureHtml);
 }
 
-function pictureCheckProcess(idNumber) {
-    var value = idNumber;
-    console.log("id number is" + value)
+
+function onModified(src){
+    // console.log(src)
+    alert('我要修改用户名称为' + src + '的一行');
+    /**
+     其它代码
+     **/
 }
+
