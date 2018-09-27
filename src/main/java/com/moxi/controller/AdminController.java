@@ -1,5 +1,6 @@
 package com.moxi.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.moxi.dao.TesterMapper;
@@ -24,22 +25,24 @@ public class AdminController {
 	TesterMapper testerMapper;
 
 	@GetMapping("/admin/registerSave")
+	public String registerSave(Model model) {
+		return "register";
+	}
+
+	@PostMapping("/admin/registerSave")
 	public String registerSave(Model model, Tester tester, HttpSession httpSession) {
-		System.out.print("coming to the backend of register Save");
 
 		try {
 			int num = testerMapper.selectTesterExists(tester.getSeriesNumber(), tester.getIDCard());
 			int numOfAccount = testerMapper.selectAccountExists(tester.getAccount());
 
 			if (numOfAccount > 0){
-				//todo 后续action
 				model.addAttribute("error", "该用户本次考试已经注册过了！");
 				return "login";
 			}
 			if (num == 0) {
 				testerMapper.insertTester(tester);
 			}else {
-				//todo 后续action
 				model.addAttribute("error", "该账号已经被注册过了，请重试! ");
 				logger.error("error", "该账号已经被注册过了，请重试! " + tester.getSeriesNumber());
 				return "register";
@@ -135,26 +138,33 @@ public class AdminController {
 
 
 	@PostMapping("admin/personalInfo")
-	public String personalInfoSave(Model model, PersonalInfomation personalInfomation, HttpSession httpSession) {
-		System.out.println("come into personalInfo part");
+	public String personalInfoSave(HttpServletRequest request, PersonalInfomation personalInfomation, HttpSession httpSession) {
+		logger.info("come into personal information part");
+		String pathTemp = request.getSession().getServletContext().getRealPath("/upload/");
+		String path = pathTemp.replace("webapp", "resources/static") + personalInfomation.getCardId() + ".jpg";
+		String[] picFiles = path.split("/");
+		String pic = "../upload/" + "/" + picFiles[picFiles.length - 1];
 		// check status, 是否已经录入过信息
 		try {
+
 			int num = testerMapper.getIfPersonalInfoExit(personalInfomation.getSeriesNumber(), personalInfomation.getCardId());
 			if (num > 0) {
 				httpSession.setAttribute("error", "已经注册过信息");
-				model.addAttribute("error", "已经注册过信息");
 				return "apply";
 			}else {
+
+
 				testerMapper.saveTesterInfo(personalInfomation);
+				testerMapper.updatePicLoad(pic, personalInfomation.getCardId());
 			}
 		}catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			logger.error("error " + e.getMessage() + " " + personalInfomation.getSeriesNumber());
-			model.addAttribute("error", e);
-			return "redirect:dashboard";
+			return "apply";
 		}
 
-		return "redirect:dashboard";
+		// 到上传图片页面
+		return "files/uploadpic";
 	}
 
 	@GetMapping("/admin/show")

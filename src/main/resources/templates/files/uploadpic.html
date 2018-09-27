@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>导入Excel表</title>
+    <title>上传个人照片</title>
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
@@ -22,9 +22,12 @@
 
 
     <div id = "result"></div>
+    <p>上传个人照片</p>
+    <p>格式为jpg，图片小于1M的2寸照片(宽度350mm, 高度520mm)</p>
+    <p>图片名位考生身份证号</p>
     <form name="IUpload" class="form-horizontal" id="form_table" action="console/picupload" th:action="@{/console/picupload}"  method="post"  enctype="multipart/form-data">
     <p><input id="pic" type="file" name = 'pic' size="40" accept = "image/*" onchange = "selectFile()"/>
-     <button id = "submit" onclick = "detect()">提交</button>
+     <button id = "submit" onclick = "detect()">提交照片</button>
     </p>
     </form>
 
@@ -43,32 +46,38 @@
             var size = file.size;
             if(size >= 1*1024*1024){
                 alert('文件大于1兆!');
-                return false;
-            }
-
-
-            testWidthHeight(files);
-
-            if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
-                alert('不是有效的图片文件!');
                 return;
             }
 
 
-            //把上传的图片显示出来
+            if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif' && file.type != 'image/jpg') {
+                alert('不是有效的图片文件!');
+                return;
+            }
+
+            var fileData = file;
+
+            //读取图片数据
             var reader = new FileReader();
-            // 将文件以Data URL形式进行读入页面
-            console.log(reader);
-            reader.readAsBinaryString(file);
-            reader.onload = function(f){
-                var result = document.getElementById("result");
-                var src = "data:" + file.type + ";base64," + window.btoa(this.result);
-                result.innerHTML = '<img src ="'+src+'"/>';
+            reader.onload = function (e) {
+                var data = e.target.result;
+                //加载图片获取图片真实宽度和高度
+                var image = new Image();
+                image.onload=function(){
+                    var width = image.width;
+                    var height = image.height;
+
+                    if(width >= 450 && height >= 600) {
+                        alert('图片长宽不符合要求');
+                        return false;
+                    }else {
+                        alert("图片满足要求，请保证图片命名为身份证名称，否则将无法考试!如果确认，请点提交，否则重传");
+                    }
+                };
+                image.src= data;
             };
-            console.log('file',file);
-            ///////////////////
-            form.append('file',file);
-            console.log(form.get('file'));
+            reader.readAsDataURL(fileData);
+
         }
 
 
@@ -77,12 +86,12 @@
     <SCRIPT LANGUAGE="JavaScript">
         <!--
 
-        function testWidthHeight(file){
+        function testWidthHeight(files1){
             debugger;
 
 
-            if(file.files && file.files[0]){
-                var fileData = file.files[0];
+            if(files1.files && files1.files[0]){
+                var fileData = files1.files[0];
 
                 //读取图片数据
                 var reader = new FileReader();
@@ -107,7 +116,7 @@
                 reader.readAsDataURL(fileData);
 
             }else {
-                var fileData = file.files[0];
+                var fileData = files1.files[0];
 
                 //读取图片数据
                 var reader = new FileReader();

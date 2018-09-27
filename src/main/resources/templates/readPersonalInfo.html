@@ -1,0 +1,117 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>INSPINIA | Register</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script th:src="@{/js/query-personalInfo.js}"></script>
+
+
+
+</head>
+
+<body>
+
+<form>
+
+    <table id="table-search" width="80%" align="center" border="1">
+        <tr>
+            <td>考试编号</td>
+            <td><input name="checkSeriesNumber" type="text" id="checkSeriesNumber"></td>
+        </tr>
+        <tr>
+            <td>身份证号</td>
+            <td><input name="idNumber" id="idNumber" type="text"></td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="搜索" id="btSearch" class="ui right floated positive button btn-search"/>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+    <!--<input type="button" value="打印准考证"-->
+           <!--onclick="printpage()" />-->
+
+    <input type=button name='button_export' title='打印1' onclick=preview(1) value=打印个人信息>
+
+
+</form>
+
+<br/>
+
+<!--startprint1-->
+<table id="table-result" width="80%" align="center" border="1">
+    <tr>
+        <th>招考序号</th>
+        <th>报名序号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>证件类别</th>
+        <th>证件号码</th>
+        <th>出生日期</th>
+        <th>民族</th>
+        <th>政治面貌</th>
+        <th>婚姻情况</th>
+        <th>奖励状况</th>
+        <th>学历</th>
+        <th>学位</th>
+        <th>专业</th>
+        <th>毕业院校</th>
+        <th>毕业时间</th>
+        <th>专业技术资格</th>
+        <th>备注</th>
+        <th>家庭成员</th>
+        <th>学习以及工作经历</th>
+        <th>移动电话</th>
+        <th>固定电话</th>
+        <th>审核状态</th>
+    </tr>
+    <tbody id="tbody-result">
+    </tbody>
+</table>
+<!--endprint1-->
+
+<!--<script type="text/javascript">-->
+    <!--function printpage()-->
+    <!--{-->
+        <!--window.print()-->
+    <!--}-->
+<!--</script>-->
+
+
+<script language="javascript">
+    function preview(oper)
+    {
+        if (oper < 10){
+            bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+            sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+            eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+            prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+            prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+            window.document.body.innerHTML=prnhtml;
+            window.print();
+            window.document.body.innerHTML=bdhtml;
+        } else {
+            window.print();
+        }
+    }
+</script>
+
+</body>
+</html>
