@@ -78,6 +78,9 @@ public class AdminController {
 
 		int numOfAccount = testerMapper.selectAccountExists(userName);
 		if (numOfAccount > 0) {
+			//TODO### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'series_numbe' in 'where clause'
+			//### The error may involve defaultParameterMap
+			//### The error occurred while setting parameters
 			testerMapper.updatePassword(userName, seriesNumber, password);
 			return "login";
 		}else {
