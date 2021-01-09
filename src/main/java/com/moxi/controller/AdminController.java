@@ -57,7 +57,7 @@ public class AdminController {
 	}
 	/**
 	 * 登录跳转
-	 * 
+	 *
 	 * @param model
 	 * @return
 	 */
