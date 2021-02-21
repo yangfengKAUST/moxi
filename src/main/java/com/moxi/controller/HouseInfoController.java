@@ -79,8 +79,13 @@ public class HouseInfoController {
 
     @PostMapping("consult/xiaoqu")
     @ResponseBody
-    public String findByXiaoqu(@RequestParam String xiaoqu,
-                             @RequestParam String city) {
+//    public String findByXiaoqu(@RequestBody(required=false) String xiaoqu,
+//                             @RequestBody(required=false) String city) {
+    public String findByXiaoqu(@RequestBody(required=false) String sourceJson) {
+
+        JSONObject jsonObject = JSONObject.parseObject(sourceJson);
+        String xiaoqu = jsonObject.get("xiaoqu").toString();
+        String city = jsonObject.get("city").toString();
         HouseReturnFormat houseReturnFormat = new HouseReturnFormat();
         if (xiaoqu == null || city == null) {
             houseReturnFormat.setStatus(false);
@@ -93,7 +98,8 @@ public class HouseInfoController {
             if (houseInfo == null) {
                 houseReturnFormat.setStatus(false);
                 houseReturnFormat.setInfo("given parameter cannot find house source in db");
-                return houseReturnFormat.toString();
+                return JSONArray.toJSONString(houseReturnFormat);
+//                return houseReturnFormat;
             } else {
                 houseReturnFormat.setStatus(true);
 //                String tmp = JSONArray.toJSONString(houseInfo);
